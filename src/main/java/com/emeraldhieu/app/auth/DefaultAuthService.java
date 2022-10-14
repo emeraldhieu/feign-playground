@@ -10,7 +10,7 @@ public class DefaultAuthService implements AuthService {
     private final AuthClient authClient;
 
     @Override
-    public LoginResponse login(String header, LoginRequest loginRequest) {
-        return authClient.login(header, loginRequest);
+    public LoginResponse login(LoginRequest loginRequest) {
+        return authClient.login(loginRequest);
     }
 }
