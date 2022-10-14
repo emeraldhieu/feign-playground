@@ -1,0 +1,4 @@
+logging:
+  level:
+    # See https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#feign-logging
+    com.emeraldhieu.app.user.UserClient: DEBUG
