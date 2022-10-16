@@ -7,6 +7,38 @@ feign:
         loggerLevel: full
       post:
         loggerLevel: full
+  circuitbreaker:
+    enabled: true
+    # Change circuit breaker's names to <clientName><calledMethod>.
+    # See https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-clou-feign-circuitbreaker-configurationproperties
+    alphanumeric-ids:
+      enabled: true
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      PostClientfailToGetPosts:
+        # Show circuit breaker's health information in health endpoint
+        registerHealthIndicator: true
+  timelimiter:
+    # Change default request timeout of all circuit breakers.
+    # See https://github.com/resilience4j/resilience4j/blob/master/resilience4j-timelimiter/src/main/java/io/github/resilience4j/timelimiter/TimeLimiterConfig.java#L14
+    # Otherwise, the request fails with TimeoutException
+    # See https://github.com/resilience4j/resilience4j/blob/master/resilience4j-timelimiter/src/main/java/io/github/resilience4j/timelimiter/internal/TimeLimiterImpl.java#L51
+    configs:
+      default:
+        timeout-duration: 10s
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      # Not sure what the "details" are. TODO Check it later.
+      show-details: always
+  health:
+    # Show circuit breaker's health information in health endpoint
+    circuitbreakers:
+      enabled: true
 
 logging:
   level:

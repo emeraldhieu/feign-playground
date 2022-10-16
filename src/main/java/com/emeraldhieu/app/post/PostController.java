@@ -32,4 +32,13 @@ public class PostController {
                        @RequestBody Post post) {
         return postService.createPost(authorization, post);
     }
+
+    /**
+     * Just a demo of failing to {@link #listPosts()}
+     */
+    @GetMapping("failed")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Post> failToListPosts() {
+        return postService.failToGetPosts();
+    }
 }

@@ -20,4 +20,9 @@ public class DefaultPostService implements PostService {
     public Post createPost(String authorization, Post post) {
         return postClient.createPost(authorization, post);
     }
+
+    @Override
+    public List<Post> failToGetPosts() {
+        return postClient.failToGetPosts().getPosts();
+    }
 }
