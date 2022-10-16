@@ -20,14 +20,6 @@ resilience4j:
       PostClientfailToGetPosts:
         # Show circuit breaker's health information in health endpoint
         registerHealthIndicator: true
-  timelimiter:
-    # Change default request timeout of all circuit breakers.
-    # See https://github.com/resilience4j/resilience4j/blob/master/resilience4j-timelimiter/src/main/java/io/github/resilience4j/timelimiter/TimeLimiterConfig.java#L14
-    # Otherwise, the request fails with TimeoutException
-    # See https://github.com/resilience4j/resilience4j/blob/master/resilience4j-timelimiter/src/main/java/io/github/resilience4j/timelimiter/internal/TimeLimiterImpl.java#L51
-    configs:
-      default:
-        timeout-duration: 10s
 
 management:
   endpoint:
