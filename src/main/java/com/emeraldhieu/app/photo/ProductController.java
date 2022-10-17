@@ -21,4 +21,10 @@ public class ProductController {
     public List<Product> listProducts() {
         return productService.getProducts();
     }
+
+    @GetMapping("failed")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> failToListProducts() {
+        return productService.failToGetProducts();
+    }
 }

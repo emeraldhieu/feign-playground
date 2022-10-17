@@ -3,8 +3,6 @@ package com.emeraldhieu.app.photo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 /**
  * The first way of using feign that is via Spring Cloud Open Feign.
  */
@@ -12,6 +10,12 @@ import java.util.List;
     configuration = ProductFeignConfiguration.class)
 public interface ProductClient {
 
-    @GetMapping("products")
+    @GetMapping("/products")
     ProductResponse getProducts();
+
+    /**
+     * Assuming getting all products fails due to 500.
+     */
+    @GetMapping("/http/500")
+    ProductResponse failToGetProducts();
 }

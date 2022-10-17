@@ -7,19 +7,41 @@ feign:
         loggerLevel: full
       post:
         loggerLevel: full
-  circuitbreaker:
-    enabled: true
-    # Change circuit breaker's names to <clientName><calledMethod>.
-    # See https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-clou-feign-circuitbreaker-configurationproperties
-    alphanumeric-ids:
-      enabled: true
+# Uncomment this block for Feign's circuit breaker for PostClient.
+# TODO Investigate why org.springframework.cloud.client.circuitbreaker.CircuitBreaker doesn't work together with io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker
+#  circuitbreaker:
+#    enabled: true
+#    # Change circuit breaker's names to <clientName><calledMethod>.
+#    # See https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-clou-feign-circuitbreaker-configurationproperties
+#    alphanumeric-ids:
+#      enabled: true
 
 resilience4j:
+  retry:
+    retry-aspect-order: 2
+    instances:
+      productRetry:
+        max-attempts: 3
+        wait-duration: 500ms
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+
   circuitbreaker:
+    circuit-breaker-aspect-order: 1
     instances:
       PostClientfailToGetPosts:
         # Show circuit breaker's health information in health endpoint
         registerHealthIndicator: true
+      circuitBreakerFallback:
+        registerHealthIndicator: true
+        waitDurationInOpenState: 50s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: TIME_BASED
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 5
+        slow-call-duration-threshold: 10s
+        slow-call-rate-threshold: 60
+        failureRateThreshold: 50
 
 management:
   endpoint:
