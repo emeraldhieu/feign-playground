@@ -1,4 +1,4 @@
-package com.emeraldhieu.app.photo;
+package com.emeraldhieu.app.product;
 
 import java.util.List;
 

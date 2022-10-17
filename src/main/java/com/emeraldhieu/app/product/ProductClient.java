@@ -1,4 +1,4 @@
-package com.emeraldhieu.app.photo;
+package com.emeraldhieu.app.product;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * The first way of using feign that is via Spring Cloud Open Feign.
  */
-@FeignClient(value = "photo", url = "https://dummyjson.com",
+@FeignClient(value = "product", url = "https://dummyjson.com",
     configuration = ProductFeignConfiguration.class)
 public interface ProductClient {
 

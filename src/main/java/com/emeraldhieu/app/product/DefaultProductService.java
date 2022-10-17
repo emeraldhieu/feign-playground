@@ -1,4 +1,4 @@
-package com.emeraldhieu.app.photo;
+package com.emeraldhieu.app.product;
 
 import feign.FeignException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
