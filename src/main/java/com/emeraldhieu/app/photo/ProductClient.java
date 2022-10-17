@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * The first way of using feign that is via Spring Cloud Open Feign.
  */
-@FeignClient(value = "photo", url = "https://jsonplaceholder.typicode.com", path = "photos",
-    configuration = PhotoFeignConfiguration.class)
-public interface PhotoClient {
+@FeignClient(value = "photo", url = "https://dummyjson.com",
+    configuration = ProductFeignConfiguration.class)
+public interface ProductClient {
 
-    @GetMapping
-    List<Photo> getPhotos();
+    @GetMapping("products")
+    ProductResponse getProducts();
 }

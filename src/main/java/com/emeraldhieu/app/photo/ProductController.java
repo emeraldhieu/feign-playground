@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("photos")
+@RequestMapping("products")
 @RequiredArgsConstructor
-public class PhotoController {
+public class ProductController {
 
-    private final PhotoService photoService;
+    private final ProductService productService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Photo> listPhotos() {
-        return photoService.getPhotos();
+    public List<Product> listProducts() {
+        return productService.getProducts();
     }
 }
