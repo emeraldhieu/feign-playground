@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("comments")
@@ -18,7 +19,7 @@ public class CommentController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Comment> listComments() {
+    public CompletableFuture<List<Comment>> listComments() {
         return commentService.getComments();
     }
 
